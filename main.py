@@ -107,7 +107,7 @@ def Tie_Fighter_movement(keys_pressed, yellow, speed, imortal):
         #pygame.time.set_timer(DOGE, 3000)
 
 
-    if keys_pressed[pygame.K_a] and yellow.x - speed > 0:  # LEFT
+    if keys_pressed[pygame.K_a] and yellow.x - speed > 0 and yellow.x >= 20:  # LEFT
         yellow.x -= speed
     if keys_pressed[pygame.K_d] and yellow.x + speed + yellow.width < BORDER.x:  # RIGHT
         yellow.x += speed
@@ -132,7 +132,7 @@ def Tie_Figther_shield_Movement(keys_pressed, shield_hit_Tie):
 def X_Wing_Movement(keys_pressed, red):
     if keys_pressed[pygame.K_LEFT] and red.x >= 565 and red.x - speed > BORDER.x + BORDER.width:  # LEFT
         red.x -= speed
-    if keys_pressed[pygame.K_RIGHT] and red.x + speed + red.width < WIDTH:  # RIGHT
+    if keys_pressed[pygame.K_RIGHT] and red.x + speed + red.width < WIDTH and red.x <= 980:  # RIGHT
         red.x += speed
     if keys_pressed[pygame.K_UP] and red.y - speed > 0 and red.y >= 45:  # UP
         red.y -= speed
@@ -142,7 +142,7 @@ def X_Wing_Movement(keys_pressed, red):
 def X_Wing_shield_Movement(keys_pressed, shield_hit_X):
     if keys_pressed[pygame.K_LEFT] and shield_hit_X.x - speed > BORDER.x + BORDER.width:  # LEFT
         shield_hit_X.x -= speed
-    if keys_pressed[pygame.K_RIGHT] and shield_hit_X.x + speed + shield_hit_X.width < WIDTH:  # RIGHT
+    if keys_pressed[pygame.K_RIGHT] and shield_hit_X.x + speed + shield_hit_X.width < WIDTH and shield_hit_X.x <= 970:  # RIGHT
         shield_hit_X.x += speed
     if keys_pressed[pygame.K_UP] and shield_hit_X.y - speed > 0 and shield_hit_X.y >= 25:  # UP
         shield_hit_X.y -= speed
@@ -218,7 +218,7 @@ def main():
                     red_bullets.append(bullet)
                     BULLET_FIRE_SOUND.play()
 
-            print(shield_hit_Tie.x)
+            print(yellow.x)
 
             if event.type == X_WING_HIT and imortal == True:
                 red_health -= 1
