@@ -1,6 +1,3 @@
-from asyncio import shield
-from pickle import FALSE
-from cv2 import FONT_HERSHEY_COMPLEX
 import pygame
 import os
 import threading
@@ -79,8 +76,10 @@ def draw_window(red, yellow, red_bullets, yellow_bullets, red_health, yellow_hea
 
     WIN.blit(TIE_FIGHTER, (yellow.x, yellow.y))
     WIN.blit(X_WING, (red.x, red.y))
-    WIN.blit(SHIELD, (shield_hit_Tie.x, shield_hit_Tie.y))
-    WIN.blit(SHIELD, (shield_hit_X.x, shield_hit_X.y))
+    if yellow_health > 0:
+        WIN.blit(SHIELD, (shield_hit_Tie.x, shield_hit_Tie.y))
+    if red_health > 0:
+        WIN.blit(SHIELD, (shield_hit_X.x, shield_hit_X.y))
     #WIN.blit(Missile,(red.x, red.y))
 
     for bullet in red_bullets:
@@ -218,8 +217,6 @@ def main():
                     red_bullets.append(bullet)
                     BULLET_FIRE_SOUND.play()
 
-            print(yellow.x)
-
             if event.type == X_WING_HIT and imortal == True:
                 red_health -= 1
                 BULLET_HIT_SOUND.play()
@@ -254,7 +251,7 @@ def main():
         #print(threading.active_count())
         #print(threading.enumerate())
         
-    main()
+    pygame.quit()
 
 
 if __name__ == "__main__":
